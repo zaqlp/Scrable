@@ -1,0 +1,115 @@
+using System;
+using System.Linq;
+using System.IO;
+using System.Text;
+using System.Collections;
+using System.Collections.Generic;
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+class Solution
+{
+    static void Main(string[] args)
+    {
+        List<string> dictionary = new List<string>();
+
+        List<string> bod1 = new List<string>() { "e", "a", "i", "o", "n", "r", "t", "l", "s", "u" };
+        List<string> bod2 = new List<string>() { "d", "g" };
+        List<string> bod3 = new List<string>() { "b", "c", "m", "p" };
+        List<string> bod4 = new List<string>() { "f", "h", "v", "w", "y" };
+        List<string> bod5 = new List<string>() { "k" };
+        List<string> bod8 = new List<string>() { "j", "x" };
+        List<string> bod10 = new List<string>() { "q", "z" };
+
+        int N = int.Parse(Console.ReadLine());
+        for (int i = 0; i < N; i++)
+        {
+            string W = Console.ReadLine();
+            dictionary.Add(W);
+            
+        }
+        string LETTERS = Console.ReadLine();
+        string LettersCopy = LETTERS;
+        string NejvicBodu="";
+        int pocetbodu =0;
+        int nejvicBodu =0;
+        List<char> characters2 = new List<char>();
+        
+
+
+        foreach (string i in dictionary)
+        {
+            characters2.Clear();
+            
+            char[] characters = i.ToCharArray();
+           pocetbodu =0;
+            characters2=characters.ToList();
+            
+            List<char> letters = LettersCopy.ToCharArray().ToList();
+            int f = 0;
+            while (f < characters2.Count())
+            {
+
+                if (letters.Contains(characters2[f]))
+                {
+                    Console.Error.WriteLine("ahoj");
+                    letters.Remove(characters2[f]);
+                }
+                else{
+                    
+                    break;
+                }
+                f++;
+                if (f >= characters2.Count())
+                {
+                    Console.Error.WriteLine(i);
+                    foreach(char d in characters2){
+                        if (bod1.Contains(d.ToString())){
+                            pocetbodu ++;
+                        }
+                        if (bod2.Contains(d.ToString())){
+                            pocetbodu = pocetbodu +2;
+                        }
+                        if (bod3.Contains(d.ToString())){
+                            pocetbodu = pocetbodu +3;
+                        }
+                        if (bod4.Contains(d.ToString())){
+                            pocetbodu = pocetbodu +4;
+                        }
+                        if (bod5.Contains(d.ToString())){
+                            pocetbodu = pocetbodu +5;
+                        }
+                        if (bod8.Contains(d.ToString())){
+                            pocetbodu = pocetbodu +8;
+                        }
+                        if (bod10.Contains(d.ToString())){
+                            pocetbodu = pocetbodu +10;
+                        }
+                        
+                    }
+                    if(pocetbodu>nejvicBodu){
+                        NejvicBodu = i;
+                        nejvicBodu=pocetbodu;
+                    }
+                    
+                }
+            }
+        }
+        Console.WriteLine(NejvicBodu);
+
+
+
+
+        // Write an answer using Console.WriteLine()
+        // To debug: Console.Error.WriteLine("Debug messages...");
+
+
+
+
+
+
+        //Console.WriteLine("invalid word");
+    }
+}
